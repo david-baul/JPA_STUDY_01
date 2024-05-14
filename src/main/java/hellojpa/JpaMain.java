@@ -14,7 +14,34 @@ public class JpaMain {
 
         try{
 
-            //저장
+            Team team = new Team();
+            team.setName("TeamA");
+            //team.getMembers().add(member);
+            em.persist(team);
+
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setTeam(team);
+            em.persist(member);
+
+            //team.getMembers().add(member);
+
+
+            //em.flush();
+            //em.clear();
+
+            Team findTeam = em.find(Team.class, 1L);
+            for (Member m : findTeam.getMembers()) {
+            System.out.println("+++++++++++++++++");
+                System.out.println(m.getId());
+                System.out.println(m.getTeam().getName());
+                System.out.println(m.getUsername());
+            System.out.println("+++++++++++++++++");
+            }
+
+
+/* 양방향 불러올때 개념
+
             Team team = new Team();
             team.setName("TeamA");
             em.persist(team);
@@ -23,6 +50,7 @@ public class JpaMain {
             member.setUsername("member1");
             member.setTeam(team);
             em.persist(member);
+
 
             em.flush();
             em.clear();
@@ -43,14 +71,8 @@ public class JpaMain {
             }
 
             System.out.println("@@@@@@@@@@@@@@@@@@"+findMember.getTeam().getMembers());
+*/
 
-//            Member findMember = em.find(Member.class, member.getId());
-//
-//            Team findTeam = findMember.getTeam();
-//            System.out.println("*********************findTeam = " + findTeam.getName());
-
-//            Member findMember = em.find(Member.class, member.getTeamId());
-//            Team findTeam = em.find(Team.class, findMember.getTeamId());
 
             ts.commit();
         }catch (Exception e){
