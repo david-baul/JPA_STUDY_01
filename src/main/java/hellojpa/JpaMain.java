@@ -14,6 +14,16 @@ public class JpaMain {
 
         try{
 
+            Movie movie = new Movie();
+
+            movie.setDirector("김감독");
+            movie.setActor("홍길동");
+            movie.setName("영화제목");
+            movie.setPrice(10000);
+
+            em.persist(movie);
+
+            /*
             Team team = new Team();
             team.setName("TeamA");
             //team.getMembers().add(member);
@@ -38,7 +48,7 @@ public class JpaMain {
                 System.out.println(m.getUsername());
             System.out.println("+++++++++++++++++");
             }
-
+*/
 
 /* 양방향 불러올때 개념
 
