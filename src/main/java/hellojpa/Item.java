@@ -3,8 +3,9 @@ package hellojpa;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-public class Item {
+@Inheritance(strategy = InheritanceType.JOINED) // JOINED, SINGLE_TABLE, TABLE_PER_CLASS 상속관계 맵핑 유형 설정
+@DiscriminatorColumn // DTYPE
+public abstract class Item {
 
     @Id @GeneratedValue
     @JoinColumn(name = "ITEM_ID")
