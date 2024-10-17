@@ -22,16 +22,14 @@ public class JpaMain {
 
         try{
             Member member = new Member();
-            member.setUsername("홍길동");
-            em.persist(member);
-            
+            member.setUsername("홍길동"); // 이 시점에는 db에 홍길동이 안들어가있다
 
             List<Member> resultList = em.createNativeQuery("select MEMBER_ID, city, street, zipcode, USERNAME from MEMBER", Member.class)
                     .getResultList();
 
             em.flush();
 
-            // flush 는 commit 과 query에서 작동한다
+            // flush 는 commit 과 query가 날아갈때 작동한다
             // 허나 dbconnection을 불러와서 자체적으로 작업시에는
             // jpa와 관련이 없기에 쿼리가 날아갈때 flush가 작동하지않는다
             // ex : dbconn.executeQuery("select * from member"); 결과값 0
